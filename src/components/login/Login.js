@@ -15,8 +15,8 @@ function Login() {
                             </div>
                             <div className="col-md-6">
                                 <div className="login_right">
-                                    <h3>Đăng Nhập BizApps</h3>
-                                    <p>Chào mừng bạn đến với cộng đồng Bizapps</p>
+                                    <h3>Đăng Nhập</h3>
+                                    <p>Chào mừng bạn đến với phần mềm quản lý nông trại</p>
                                     <form>
                                         <div className="form-group field-login">
                                             <label htmlFor="login" className="control-label">Email</label>
@@ -49,21 +49,21 @@ function Login() {
                                             <button type="submit" className="btn btn-success btn-block btn-login-system">Đăng nhập</button>
 
                                         </div>
-                                        <div className="form-group">
+                                        <div className="form-group" id="group3">
                                             <div className="control">
                                                 <div className="box-link-pass">
                                                     <input type="checkbox" id="chk-save-pass" />
-                                                        <label htmlFor="chk-save-pass">Lưu Mật Khẩu</label>
-                                                        <a href="/" className="btn-forgot-pass1">Quên Mật Khẩu</a>
+                                                    <label htmlFor="chk-save-pass" id="label-pass">Lưu Mật Khẩu</label>
+                                                    <a href="/" className="btn-forgot-pass1">Quên Mật Khẩu</a>
                                                 </div>
                                                 <div className="box-link-signup">
-                                                    <label>Bạn chưa có tài khoản?
+                                                    <label id="label-pass">Bạn chưa có tài khoản?
                                                         <a href="/web/signup"> Đăng ký </a>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="form-group field-db">
+                                        {/* <div className="form-group field-db">
                                             <div className="row">
                                                 <div className="col-sm-6 btn-social-network">
                                                     <a className="fa fa-facebook-square" href="/">
@@ -78,7 +78,7 @@ function Login() {
                                                     </a>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="space10"></div>
 
                                     </form>
