@@ -1,7 +1,7 @@
 import React from 'react';
-import '../assets/css/assign.css';
+import '../../assets/css/assign.css';
 import 'bootstrap/dist/css/bootstrap.min.css';  
-import ModalAssgin from './assign/ModalAssgin';
+import ModalAssgin from './ModalAssgin';
 import { useState } from 'react';
 
 const Assign = () => {
