@@ -7,6 +7,7 @@ import Assign from './pages/assign/Assign';
 import HomePage from './pages/HomePage';
 import KpiManagement from './pages/KpiManagement';
 import Report from './pages/Report';
+import Personnel from './pages/Personnel';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="assign" element={<Assign />} />
+        <Route path="personnel" element={<Personnel />} />
         <Route path="report" element={<Report />} />
         <Route path="analyse" element={<Analyse />} />
         <Route path="kpi-management" element={<KpiManagement />} />
