@@ -1,16 +1,19 @@
 import React from 'react';
-import './assign.css';
+import '../assets/css/assign.css';
 import 'bootstrap/dist/css/bootstrap.min.css';  
-import ModalAssgin from './ModalAssgin';
+import ModalAssgin from './assign/ModalAssgin';
+import { useState } from 'react';
 
 const Assign = () => {
 
-    const handleAddAssign = () =>{
-        console.log('test');
+    const [modal, setModal] = useState(false);
+
+    const handleAddAssign = () => {
+        setModal(!modal);
     }
   return (
     <div>
-        <ModalAssgin />
+        <ModalAssgin modal={modal} setModal={setModal}/>
         <h2 className="page-header">Giao việc</h2>
         <div className="add_assgin">
             <button className="btn btn-primary" onClick={handleAddAssign}><i className="bx bx-plus-medical"></i>Thêm công việc</button>
@@ -74,3 +77,5 @@ const Assign = () => {
 };
 
 export default Assign;
+
+

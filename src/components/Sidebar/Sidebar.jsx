@@ -11,7 +11,7 @@ const sidebarItems = [
   {
     name: 'Giao việc',
     path: '/assign',
-    icon: 'bx bxs-report'
+    icon: 'bx bx-spreadsheet'
   },
   {
     name: 'Báo cáo',
