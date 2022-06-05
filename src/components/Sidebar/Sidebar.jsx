@@ -9,6 +9,11 @@ const sidebarItems = [
     icon: 'bx bx-home-alt',
   },
   {
+    name: 'Giao việc',
+    path: '/assign',
+    icon: 'bx bxs-report'
+  },
+  {
     name: 'Báo cáo',
     path: '/report',
     icon: 'bx bxs-report',
