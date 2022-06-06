@@ -98,21 +98,21 @@ function LoginPage() {
                       </div>
                     </div>
                     {/* <div className="form-group field-db">
-                                            <div className="row">
-                                                <div className="col-sm-6 btn-social-network">
-                                                    <a className="fa fa-facebook-square" href="/">
-                                                        <i className="fa fa-facebook-square"></i>
-                                                        Đăng nhập bằng Facebook
-                                                    </a>
-                                                </div>
-                                                <div className="col-sm-6 btn-social-network">
-                                                    <a className="fa fa-google-plus-square" href="/">
-                                                        <i className="fa fa-google-plus-square"></i>
-                                                        Đăng nhập bằng Google
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div> */}
+                      <div className="row">
+                        <div className="col-sm-6 btn-social-network">
+                          <a className="fa fa-facebook-square" href="/">
+                            <i className="fa fa-facebook-square"></i>
+                            Đăng nhập bằng Facebook
+                          </a>
+                        </div>
+                        <div className="col-sm-6 btn-social-network">
+                          <a className="fa fa-google-plus-square" href="/">
+                            <i className="fa fa-google-plus-square"></i>
+                            Đăng nhập bằng Google
+                          </a>
+                        </div>
+                      </div>
+                    </div> */}
                     <div className="space10"></div>
                   </form>
                 </div>

@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import LoginPage from './features/auth/LoginPage';
 import Analyse from './pages/Analyse';
-import Assign from './pages/assign/Assign';
+import Assign from './pages/Assign';
 import HomePage from './pages/HomePage';
 import KpiManagement from './pages/KpiManagement';
 import NotFound from './pages/NotFound';

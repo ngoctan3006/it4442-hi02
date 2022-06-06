@@ -1,16 +1,24 @@
-import { Button, Input, FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import DatePicker from "react-datepicker";
-import { Controller, useForm } from "react-hook-form";
-import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { Controller, useForm } from 'react-hook-form';
+import {
+  Button,
+  FormGroup,
+  Input,
+  Label,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+} from 'reactstrap';
 
 const ModalAssgin = ({ modal, setModal }) => {
-  const {
-    control
-  } = useForm();
+  const { control } = useForm();
 
   const toggle = () => {
-    setModal(!modal)
-  }
+    setModal(!modal);
+  };
+
   return (
     <Modal isOpen={modal} toggle={toggle}>
       <ModalHeader toggle={toggle}>Thêm công việc mới</ModalHeader>
@@ -64,19 +72,19 @@ const ModalAssgin = ({ modal, setModal }) => {
                 />
               )}
             />
-            </div>
+          </div>
         </FormGroup>
       </ModalBody>
       <ModalFooter>
-        <Button color="primary" onClick={toggle}>Add</Button>
-        <Button color="secondary" onClick={toggle}>Cancel</Button>
+        <Button color="primary" onClick={toggle}>
+          Add
+        </Button>
+        <Button color="secondary" onClick={toggle}>
+          Cancel
+        </Button>
       </ModalFooter>
     </Modal>
   );
 };
 
 export default ModalAssgin;
-
-
-
-
