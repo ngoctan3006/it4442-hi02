@@ -1,9 +1,9 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
 import { Link } from 'react-router-dom';
-import Badge from '../components/Badge/Badge';
-import StatusCard from '../components/StatusCard/StatusCard';
-import Table from '../components/Table/Table';
+import Badge from '../components/Badge';
+import StatusCard from '../components/StatusCard';
+import Table from '../components/Table';
 
 const statusCards = [
   {

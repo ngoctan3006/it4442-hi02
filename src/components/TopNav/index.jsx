@@ -1,5 +1,5 @@
 import user_image from '../../assets/images/avatar.jpg';
-import Dropdown from '../Dropdown/Dropdown';
+import Dropdown from '../Dropdown';
 import './topnav.css';
 
 const curr_user = {

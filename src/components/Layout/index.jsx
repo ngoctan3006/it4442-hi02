@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../Sidebar/Sidebar';
-import TopNav from '../TopNav/TopNav';
+import Sidebar from '../Sidebar';
+import TopNav from '../TopNav';
 import './layout.css';
 
 const Layout = () => {
