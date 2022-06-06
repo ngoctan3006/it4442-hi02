@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage';
 import KpiManagement from './pages/KpiManagement';
 import NotFound from './pages/NotFound';
 import Report from './pages/Report';
+import Personnel from './pages/Personnel';
 
 function App() {
   return (
