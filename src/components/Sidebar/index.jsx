@@ -11,12 +11,12 @@ const sidebarItems = [
   {
     name: 'Giao việc',
     path: '/assign',
-    icon: 'bx bx-spreadsheet'
+    icon: 'bx bx-spreadsheet',
   },
   {
     name: 'Nhân sự',
     path: '/personnel',
-    icon: 'bx bx-spreadsheet'
+    icon: 'bx bx-spreadsheet',
   },
   {
     name: 'Báo cáo',
