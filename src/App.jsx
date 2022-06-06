@@ -8,6 +8,7 @@ import Assign from './pages/Assign';
 import HomePage from './pages/HomePage';
 import KpiManagement from './pages/KpiManagement';
 import NotFound from './pages/NotFound';
+import Personnel from './pages/Personnel';
 import Report from './pages/Report';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="assign" element={<Assign />} />
+          <Route path="personnel" element={<Personnel />} />
           <Route path="report" element={<Report />} />
           <Route path="analyse" element={<Analyse />} />
           <Route path="kpi-management" element={<KpiManagement />} />
