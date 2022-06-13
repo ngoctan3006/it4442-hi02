@@ -1,0 +1,20 @@
+@baseUrl = http://localhost:5000
+
+# @name getWorks
+GET {{baseUrl}}/works?_page=1&_limit=10
+
+###
+
+# @name addWork
+POST {{baseUrl}}/works
+Content-Type: application/json
+
+{
+  "name": "Dọn Cây Cỏ",
+  "description": "Dọn Sạch Các Cây Cỏ Hoang",
+  "start": "2022-05-06",
+  "end": "2022-05-09",
+  "status": "active",
+  "group": "4"
+}
+

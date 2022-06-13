@@ -2,30 +2,30 @@
   overflow-y: auto;
 }
 
-table {
+/* table {
   width: 100%;
   min-width: 400px;
   border-spacing: 0;
-}
+} */
 
-thead {
+/* thead {
   background-color: var(--second-bg);
-}
+} */
 
-tr {
+/* tr {
   text-align: left;
-}
+} */
 
-th,
+/* th,
 td {
   text-transform: capitalize;
   padding: 15px 10px;
-}
+} */
 
-tbody > tr:hover {
-  background-color: var(--main-color);
+/* tbody > tr:hover {
+  background-color: #fafafa;
   color: var(--txt-white);
-}
+} */
 
 .table__pagination {
   display: flex;

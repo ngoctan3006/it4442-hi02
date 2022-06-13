@@ -1,0 +1,40 @@
+{
+  "works": [
+    {
+      "name": "Trồng cây",
+      "description": "Trồng các loại cây cam, bưởi, xoài",
+      "start": "2022-05-06",
+      "end": "2022-05-09",
+      "status": "active",
+      "group": "1",
+      "id": 1
+    },
+    {
+      "name": "Diệt sâu, bệnh",
+      "description": "phun thuốc trừ sâu diệt sâu, sử dụng thuốc trừ sâu ABC , nồng độ ...",
+      "start": "2022-05-06",
+      "end": "2022-05-09",
+      "status": "active",
+      "group": "2",
+      "id": 2
+    },
+    {
+      "name": "Bón phân",
+      "description": "Sử dụng phân bón NPK...",
+      "start": "2022-05-06",
+      "end": "2022-05-09",
+      "status": "active",
+      "group": "3",
+      "id": 3
+    },
+    {
+      "name": "Dọn cây cỏ",
+      "description": "Dọn sạch các cây cỏ hoang",
+      "start": "2022-05-06",
+      "end": "2022-05-09",
+      "status": "active",
+      "group": "4",
+      "id": 4
+    }
+  ]
+}
