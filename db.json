@@ -3,9 +3,9 @@
     {
       "name": "Trồng cây",
       "description": "Trồng các loại cây cam, bưởi, xoài",
-      "start": "2022-05-06",
-      "end": "2022-05-09",
-      "status": "active",
+      "start": "2022-06-26",
+      "end": "2022-06-30",
+      "status": "processing",
       "group": "1",
       "id": 1
     },
@@ -14,7 +14,7 @@
       "description": "phun thuốc trừ sâu diệt sâu, sử dụng thuốc trừ sâu ABC , nồng độ ...",
       "start": "2022-05-06",
       "end": "2022-05-09",
-      "status": "active",
+      "status": "error",
       "group": "2",
       "id": 2
     },
@@ -23,7 +23,7 @@
       "description": "Sử dụng phân bón NPK...",
       "start": "2022-05-06",
       "end": "2022-05-09",
-      "status": "active",
+      "status": "processing",
       "group": "3",
       "id": 3
     },
@@ -32,7 +32,7 @@
       "description": "Dọn sạch các cây cỏ hoang",
       "start": "2022-05-06",
       "end": "2022-05-09",
-      "status": "active",
+      "status": "processing",
       "group": "4",
       "id": 4
     }

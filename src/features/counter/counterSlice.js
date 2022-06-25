@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { fetchCount } from './counterAPI';
 
 const initialState = {
-  email: 0,
-  password: 'idle',
+  value: 0,
+  status: 'idle',
 };
 
 // The function below is called a thunk and allows us to perform async logic. It

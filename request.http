@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:5000
+@baseUrl = https://js-post-api.herokuapp.com/api
 
 # @name getWorks
 GET {{baseUrl}}/works?_page=1&_limit=10
