@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import * as api from './assignAPI';
 import { message } from 'antd';
+import * as api from './assignAPI';
 
 const initialState = {
   loading: false,
@@ -28,8 +28,6 @@ export const assignSlice = createSlice({
       state.works.push(action.payload);
     },
     editWork: (state, action) => {
-      // const index = state.works.findIndex((work) => work.id === action.payload.id);
-      // state.works[index] = action.payload;
       state.works = state.works.map((item) =>
         item.id === action.payload.id ? action.payload : item
       );
@@ -108,5 +106,7 @@ export const deleteWork = (id) => async (dispatch) => {
 
 export const selectWorks = (state) => state.assign.works;
 export const selectLoading = (state) => state.assign.loading;
+export const selectPage = (state) => state.assign.page;
+export const selectTotal = (state) => state.assign.total;
 
 export default assignSlice.reducer;

@@ -63,7 +63,7 @@ const Assign = () => {
       title: 'Thao tác',
       key: 'action',
       render: (text, record) => (
-        <Space key={record.id} size="middle">
+        <Space size="middle">
           <Button
             onClick={() => {
               setCurrentWork(record.id);
