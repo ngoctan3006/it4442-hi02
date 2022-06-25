@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as api from './assignAPI';
+import { message } from 'antd';
 
 const initialState = {
   loading: false,
@@ -53,8 +54,17 @@ export const { startLoading, endLoading, addWork, editWork, removeWork } = assig
 
 export const createWork = (work) => async (dispatch) => {
   try {
+    message.loading({
+      content: 'Đang tạo công việc...',
+      key: 'updatable',
+    });
     const { data } = await api.createWork(work);
     dispatch(addWork(data));
+    message.success({
+      content: 'Đã tạo công việc thành công!',
+      key: 'updatable',
+      duration: 3,
+    });
   } catch (error) {
     console.log(error);
   }
@@ -62,8 +72,17 @@ export const createWork = (work) => async (dispatch) => {
 
 export const updateWork = (id, work) => async (dispatch) => {
   try {
+    message.loading({
+      content: 'Đang chỉnh sửa công việc...',
+      key: 'updatable',
+    });
     const { data } = await api.updateWork(id, work);
     dispatch(editWork(data));
+    message.success({
+      content: 'Đã chỉnh sửa công việc thành công!',
+      key: 'updatable',
+      duration: 3,
+    });
   } catch (error) {
     console.log(error);
   }
@@ -71,8 +90,17 @@ export const updateWork = (id, work) => async (dispatch) => {
 
 export const deleteWork = (id) => async (dispatch) => {
   try {
+    message.loading({
+      content: 'Đang xóa công việc...',
+      key: 'updatable',
+    });
     await api.deleteWork(id);
     dispatch(removeWork(id));
+    message.success({
+      content: 'Đã xóa công việc thành công!',
+      key: 'updatable',
+      duration: 3,
+    });
   } catch (error) {
     console.log(error);
   }
