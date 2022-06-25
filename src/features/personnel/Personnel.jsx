@@ -1,6 +1,7 @@
+import { PlusOutlined } from '@ant-design/icons';
 import { Button, Space, Table } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectLoading, selectPage, selectPersonnel } from './personnelSlice';
+import { selectLoading, selectPage, selectPersonnel, selectTotal } from './personnelSlice';
 
 const Personnel = () => {
   const columns = [
@@ -10,7 +11,7 @@ const Personnel = () => {
     },
     {
       title: 'Họ và tên',
-      dataIndex: 'description',
+      dataIndex: 'name',
     },
     {
       title: 'Nhóm',
@@ -19,8 +20,7 @@ const Personnel = () => {
     },
     {
       title: 'Chức vụ',
-      dataIndex: 'time',
-      sorter: (a, b) => a.time - b.time,
+      dataIndex: 'role',
     },
     {
       title: 'Thao tác',
@@ -37,17 +37,27 @@ const Personnel = () => {
   const users = useSelector(selectPersonnel);
   const loading = useSelector(selectLoading);
   const page = useSelector(selectPage);
+  const total = useSelector(selectTotal);
   const dispatch = useDispatch();
 
   return (
     <div>
       <h2 className="page-hearder">Nhân sự</h2>
 
+      <Button
+        icon={<PlusOutlined />}
+        type="primary"
+        style={{ marginBottom: '16px' }}
+        // onClick={showModal}
+      >
+        Thêm người mới
+      </Button>
+
       <Table
         loading={loading}
         size="large"
         bordered
-        pagination
+        pagination={{ current: page, total }}
         columns={columns}
         dataSource={
           users.length

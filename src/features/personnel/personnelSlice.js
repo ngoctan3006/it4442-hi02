@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export const getPersonnel = createAsyncThunk('personnel/getPersonnel', async () => {
-  const res = await api.fetchWorks();
+  const res = await api.fetchUser();
   return res.data;
 });
 
@@ -24,16 +24,16 @@ export const personnelSlice = createSlice({
     endLoading: (state) => {
       state.loading = false;
     },
-    addWork: (state, action) => {
+    addUser: (state, action) => {
       state.personnel.push(action.payload);
     },
-    editWork: (state, action) => {
+    editUser: (state, action) => {
       state.personnel = state.personnel.map((item) =>
         item.id === action.payload.id ? action.payload : item
       );
     },
-    removeWork: (state, action) => {
-      state.personnel = state.personnel.filter((work) => work.id !== action.payload);
+    removeUser: (state, action) => {
+      state.personnel = state.personnel.filter((user) => user.id !== action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -48,18 +48,18 @@ export const personnelSlice = createSlice({
   },
 });
 
-export const { startLoading, endLoading, addWork, editWork, removeWork } = personnelSlice.actions;
+export const { startLoading, endLoading, addUser, editUser, removeUser } = personnelSlice.actions;
 
-export const createWork = (work) => async (dispatch) => {
+export const createUser = (user) => async (dispatch) => {
   try {
     message.loading({
-      content: 'Đang tạo công việc...',
+      content: 'Đang tạo tài khoản...',
       key: 'updatable',
     });
-    const { data } = await api.createWork(work);
-    dispatch(addWork(data));
+    const { data } = await api.createUser(user);
+    dispatch(addUser(data));
     message.success({
-      content: 'Đã tạo công việc thành công!',
+      content: 'Đã thêm tài khoản thành công!',
       key: 'updatable',
       duration: 3,
     });
@@ -68,14 +68,14 @@ export const createWork = (work) => async (dispatch) => {
   }
 };
 
-export const updateWork = (id, work) => async (dispatch) => {
+export const updateUser = (id, work) => async (dispatch) => {
   try {
     message.loading({
       content: 'Đang chỉnh sửa công việc...',
       key: 'updatable',
     });
-    const { data } = await api.updateWork(id, work);
-    dispatch(editWork(data));
+    const { data } = await api.updateUser(id, work);
+    dispatch(editUser(data));
     message.success({
       content: 'Đã chỉnh sửa công việc thành công!',
       key: 'updatable',
@@ -86,14 +86,14 @@ export const updateWork = (id, work) => async (dispatch) => {
   }
 };
 
-export const deleteWork = (id) => async (dispatch) => {
+export const deleteUser = (id) => async (dispatch) => {
   try {
     message.loading({
       content: 'Đang xóa công việc...',
       key: 'updatable',
     });
-    await api.deleteWork(id);
-    dispatch(removeWork(id));
+    await api.deleteUser(id);
+    dispatch(removeUser(id));
     message.success({
       content: 'Đã xóa công việc thành công!',
       key: 'updatable',

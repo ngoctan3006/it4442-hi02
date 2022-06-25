@@ -1,12 +1,13 @@
-@baseUrl = https://js-post-api.herokuapp.com/api
+@baseUrl = http://localhost:5000
+@sub = works
 
 # @name getWorks
-GET {{baseUrl}}/works?_page=1&_limit=10
+GET {{baseUrl}}/{{sub}}?_page=1&_limit=10
 
 ###
 
 # @name addWork
-POST {{baseUrl}}/works
+POST {{baseUrl}}/{{sub}}
 Content-Type: application/json
 
 {

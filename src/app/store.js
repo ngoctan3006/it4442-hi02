@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import assignReducer from '../features/assign/assignSlice';
-import personnelReducer from '../features/personnel/assignSlice';
+import counterReducer from '../features/counter/counterSlice';
+import personnelReducer from '../features/personnel/personnelSlice';
 
 export const store = configureStore({
   reducer: {
