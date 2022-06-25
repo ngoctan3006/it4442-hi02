@@ -36,7 +36,7 @@ const initState = {
   description: '',
   start: '',
   end: '',
-  status: '',
+  status: 'processing',
   group: '',
 };
 
@@ -108,9 +108,9 @@ const Assign = () => {
 
   const handleOk = () => {
     if (currentWork) {
-      dispatch(updateWork(currentWork, { ...formData, status: 'processing' }));
+      dispatch(updateWork(currentWork, formData));
     } else {
-      dispatch(createWork({ ...formData, status: 'processing' }));
+      dispatch(createWork(formData));
     }
     setFormData(initState);
     setIsModalVisible(false);
@@ -186,6 +186,31 @@ const Assign = () => {
               <Select.Option value={'4'}>Nhóm 4</Select.Option>
             </Select>
           </Form.Item>
+          {currentWork ? (
+            <Form.Item label="Trạng thái">
+              <Select
+                value={formData.status}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    status: e,
+                  })
+                }
+              >
+                <Select.Option value={'success'}>
+                  <Tag color={'success'}>{statusColor['success']}</Tag>
+                </Select.Option>
+                <Select.Option value={'processing'}>
+                  <Tag color={'processing'}>{statusColor['processing']}</Tag>
+                </Select.Option>
+                <Select.Option value={'error'}>
+                  <Tag color={'error'}>{statusColor['error']}</Tag>
+                </Select.Option>
+              </Select>
+            </Form.Item>
+          ) : (
+            ''
+          )}
           <Form.Item label="Thời gian">
             <DatePicker.RangePicker
               popupStyle={{ width: 'auto' }}
