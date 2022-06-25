@@ -18,19 +18,6 @@ const statusColor = {
   error: 'Muộn',
 };
 
-// const data = [];
-
-// for (let i = 1; i <= 20; i++) {
-//   data.push({
-//     key: i,
-//     name: `Công việc ${i}`,
-//     description: `Nội dung công việc ${i}`,
-//     group: `Nhóm ${((i - 1) % 4) + 1}`,
-//     status: 'completed',
-//     time: '11/06/2022 - 15/06/2022',
-//   });
-// }
-
 const initState = {
   name: '',
   description: '',
