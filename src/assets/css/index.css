@@ -63,28 +63,8 @@ a:hover {
   color: var(--main-color);
 }
 
-/* button {
-  cursor: pointer;
-  border: 0;
-  outline: 0;
-  color: var(--txt-color);
-} */
-
-/* ul {
-  list-style-type: none;
-} */
-
-/* input {
-  border: 2px solid transparent;
-  outline: 0;
-}
-
-input:focus {
-  border: 2px solid var(--main-color);
-} */
-
 .page-header {
-  margin-bottom: 40px;
+  margin-bottom: 64px;
   text-transform: capitalize;
 }
 
@@ -115,39 +95,4 @@ input:focus {
 .card__footer {
   text-align: center;
   text-transform: capitalize;
-}
-
-.light-background {
-  background-color: var(--main-bg-light);
-  color: #000;
-}
-
-.dark-background {
-  background-color: var(--main-bg-dark);
-  color: #fff;
-}
-
-.blue-color {
-  background-color: var(--main-color-blue);
-  color: #fff;
-}
-
-.red-color {
-  background-color: var(--main-color-red);
-  color: #fff;
-}
-
-.cyan-color {
-  background-color: var(--main-color-cyan);
-  color: #fff;
-}
-
-.green-color {
-  background-color: var(--main-color-green);
-  color: #fff;
-}
-
-.orange-color {
-  background-color: var(--main-color-orange);
-  color: #fff;
 }

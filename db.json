@@ -40,13 +40,13 @@
   "users": [
     {
       "name": "Nguyễn Thị Hồng Ngọc",
-      "role": "leader",
+      "role": 1,
       "group": "4",
       "id": 1
     },
     {
       "name": "Lê Văn Dũng",
-      "role": "leader",
+      "role": 1,
       "group": "3",
       "id": 2
     }

@@ -4,15 +4,12 @@ import * as api from './personnelAPI';
 
 const initialState = {
   loading: false,
-  page: 1,
-  total: 1,
+  pagination: {
+    current: 1,
+    total: 1,
+  },
   personnel: [],
 };
-
-export const getPersonnel = createAsyncThunk('personnel/getPersonnel', async () => {
-  const res = await api.fetchUser();
-  return res.data;
-});
 
 export const personnelSlice = createSlice({
   name: 'personnel',
@@ -23,6 +20,9 @@ export const personnelSlice = createSlice({
     },
     endLoading: (state) => {
       state.loading = false;
+    },
+    fetchUsers: (state, action) => {
+      state.personnel = action.payload;
     },
     addUser: (state, action) => {
       state.personnel.push(action.payload);
@@ -36,19 +36,21 @@ export const personnelSlice = createSlice({
       state.personnel = state.personnel.filter((user) => user.id !== action.payload);
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(getPersonnel.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(getPersonnel.fulfilled, (state, action) => {
-        state.loading = false;
-        state.personnel = action.payload;
-      });
-  },
 });
 
-export const { startLoading, endLoading, addUser, editUser, removeUser } = personnelSlice.actions;
+export const { startLoading, endLoading, fetchUsers, addUser, editUser, removeUser } =
+  personnelSlice.actions;
+
+export const getUsers = (pagination) => async (dispatch) => {
+  try {
+    dispatch(startLoading());
+    const { data } = await api.fetchUsers(pagination);
+    dispatch(fetchUsers(data));
+    dispatch(endLoading());
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const createUser = (user) => async (dispatch) => {
   try {
@@ -106,7 +108,6 @@ export const deleteUser = (id) => async (dispatch) => {
 
 export const selectPersonnel = (state) => state.personnel.personnel;
 export const selectLoading = (state) => state.personnel.loading;
-export const selectPage = (state) => state.personnel.page;
-export const selectTotal = (state) => state.personnel.total;
+export const selectPagination = (state) => state.personnel.pagination;
 
 export default personnelSlice.reducer;

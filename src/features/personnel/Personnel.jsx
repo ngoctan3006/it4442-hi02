@@ -1,7 +1,10 @@
-import { PlusOutlined } from '@ant-design/icons';
-import { Button, Space, Table } from 'antd';
+import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons';
+import { Button, Space, Table, Typography } from 'antd';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectLoading, selectPage, selectPersonnel, selectTotal } from './personnelSlice';
+import { getUsers, selectLoading, selectPagination, selectPersonnel } from './personnelSlice';
+
+const roles = ['Nông dân', 'Trưởng nhóm', 'Quản trị viên'];
 
 const Personnel = () => {
   const columns = [
@@ -27,8 +30,15 @@ const Personnel = () => {
       key: 'action',
       render: () => (
         <Space size="middle">
-          <Button type="primary">Chỉnh sửa</Button>
-          <Button danger>Xóa</Button>
+          <Button icon={<EyeOutlined />} size="small">
+            Xem thông tin
+          </Button>
+          <Button icon={<EditOutlined />} size="small" type="primary">
+            Chỉnh sửa
+          </Button>
+          <Button icon={<DeleteOutlined />} size="small" danger>
+            Xóa
+          </Button>
         </Space>
       ),
     },
@@ -36,13 +46,16 @@ const Personnel = () => {
 
   const users = useSelector(selectPersonnel);
   const loading = useSelector(selectLoading);
-  const page = useSelector(selectPage);
-  const total = useSelector(selectTotal);
+  const pagination = useSelector(selectPagination);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers(pagination));
+  }, []);
 
   return (
     <div>
-      <h2 className="page-hearder">Nhân sự</h2>
+      <Typography.Title level={3}>Nhân sự</Typography.Title>
 
       <Button
         icon={<PlusOutlined />}
@@ -57,14 +70,15 @@ const Personnel = () => {
         loading={loading}
         size="large"
         bordered
-        pagination={{ current: page, total }}
+        pagination={pagination}
         columns={columns}
         dataSource={
           users.length
             ? users.map((item, index) => ({
                 ...item,
                 key: item.id,
-                index: index + 10 * (page - 1) + 1,
+                index: index + 10 * (pagination.current - 1) + 1,
+                role: roles[item.role],
               }))
             : []
         }
