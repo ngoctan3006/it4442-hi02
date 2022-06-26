@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { message } from 'antd';
 import * as api from './assignAPI';
 
@@ -11,11 +11,6 @@ const initialState = {
   works: [],
 };
 
-export const getWorks = createAsyncThunk('assign/getWorks', async () => {
-  const res = await api.fetchWorks();
-  return res.data;
-});
-
 export const assignSlice = createSlice({
   name: 'assign',
   initialState,
@@ -25,6 +20,10 @@ export const assignSlice = createSlice({
     },
     endLoading: (state) => {
       state.loading = false;
+    },
+    fetchWorks: (state, action) => {
+      state.works = action.payload.works;
+      state.pagination = action.payload.pagination;
     },
     addWork: (state, action) => {
       state.works.push(action.payload);
@@ -38,19 +37,30 @@ export const assignSlice = createSlice({
       state.works = state.works.filter((work) => work.id !== action.payload);
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(getWorks.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(getWorks.fulfilled, (state, action) => {
-        state.loading = false;
-        state.works = action.payload;
-      });
-  },
 });
 
-export const { startLoading, endLoading, addWork, editWork, removeWork } = assignSlice.actions;
+export const { startLoading, endLoading, fetchWorks, addWork, editWork, removeWork } =
+  assignSlice.actions;
+
+export const getWorks =
+  (params = {}) =>
+  async (dispatch) => {
+    try {
+      dispatch(startLoading());
+      const { data, headers } = await api.fetchWorks(params);
+      const res = {
+        works: data,
+        pagination: {
+          current: params?.pagination?.current || 1,
+          total: parseInt(headers['x-total-count']),
+        },
+      };
+      dispatch(fetchWorks(res));
+      dispatch(endLoading());
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 export const createWork = (work) => async (dispatch) => {
   try {

@@ -11,6 +11,7 @@ import {
   Space,
   Table,
   Tag,
+  Typography,
 } from 'antd';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
@@ -140,9 +141,19 @@ const Assign = () => {
     });
   };
 
+  const handleTableChange = (newPagination) => {
+    dispatch(
+      getWorks({
+        pagination: newPagination,
+      })
+    );
+  };
+
   return (
     <div>
-      <h2 className="page-header">Danh sách công việc</h2>
+      <Typography.Title style={{ marginBottom: 36 }} level={3}>
+        Danh Sách Công Việc
+      </Typography.Title>
       <Button
         icon={<PlusOutlined />}
         type="primary"
@@ -271,6 +282,7 @@ const Assign = () => {
         loading={loading}
         size="large"
         bordered
+        onChange={handleTableChange}
         pagination={pagination}
         columns={columns}
         dataSource={

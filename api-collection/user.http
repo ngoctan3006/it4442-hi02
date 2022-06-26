@@ -11,7 +11,7 @@ POST {{baseUrl}}/{{sub}}
 Content-Type: application/json
 
 {
-  "name": "Lê Văn Dũng",
+  "name": "Lê Văn Toàn",
   "role": "leader",
   "group": "3"
 }

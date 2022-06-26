@@ -2,9 +2,8 @@ import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-de
 import { Button, Space, Table, Typography } from 'antd';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { roles } from '../../constants';
 import { getUsers, selectLoading, selectPagination, selectPersonnel } from './personnelSlice';
-
-const roles = ['Nông dân', 'Trưởng nhóm', 'Quản trị viên'];
 
 const Personnel = () => {
   const columns = [
@@ -55,7 +54,9 @@ const Personnel = () => {
 
   return (
     <div>
-      <Typography.Title level={3}>Nhân sự</Typography.Title>
+      <Typography.Title style={{ marginBottom: 36 }} level={3}>
+        Nhân Sự
+      </Typography.Title>
 
       <Button
         icon={<PlusOutlined />}

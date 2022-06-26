@@ -1,9 +1,12 @@
+import { Typography } from 'antd';
 import React from 'react';
 
 const Analyse = () => {
   return (
     <div>
-      <h2 className="page-header">Thống kê</h2>
+      <Typography.Title style={{ marginBottom: 36 }} level={3}>
+        Thống Kê
+      </Typography.Title>
     </div>
   );
 };

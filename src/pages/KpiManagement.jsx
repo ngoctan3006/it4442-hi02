@@ -1,5 +1,4 @@
-import { Box, Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { Col, Row, Typography } from 'antd';
 import Chart from 'react-apexcharts';
 
 const chartDonutOptions = {
@@ -54,41 +53,39 @@ const chartBarOptions = {
   },
 };
 
-const useStyles = makeStyles({
-  chart: {
-    backgroundColor: '#fff',
-    padding: '30px',
-  },
-});
+const chartStyles = {
+  backgroundColor: '#fff',
+  padding: '16px',
+};
 
 const KpiManagement = () => {
-  const classes = useStyles();
-
   return (
     <div>
-      <h2 className="page-header">Quản lý KPI</h2>
-      <Grid container spacing={3}>
-        <Grid item xs={6}>
-          <Box className={classes.chart}>
+      <Typography.Title style={{ marginBottom: 36 }} level={3}>
+        Quản Lý KPI
+      </Typography.Title>
+      <Row gutter={30}>
+        <Col span={12}>
+          <div style={chartStyles}>
             <Chart
               options={chartDonutOptions.options}
               series={chartDonutOptions.series}
               type="donut"
               width="100%"
             />
-          </Box>
-        </Grid>
-        <Grid item xs={6}>
-          <Box className={classes.chart}>
+          </div>
+        </Col>
+        <Col span={12}>
+          <div style={chartStyles}>
             <Chart
               options={chartBarOptions.options}
               series={chartBarOptions.series}
               type="bar"
               width="100%"
             />
-          </Box>
-        </Grid>
-      </Grid>
+          </div>
+        </Col>
+      </Row>
     </div>
   );
 };

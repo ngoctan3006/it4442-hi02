@@ -14,9 +14,9 @@
     },
     {
       "name": "Diệt sâu, bệnh",
-      "description": "phun thuốc trừ sâu diệt sâu, sử dụng thuốc trừ sâu ABC , nồng độ ...",
-      "start": "2022-06-27",
-      "end": "2022-07-05",
+      "description": "Phun thuốc trừ sâu diệt sâu, sử dụng thuốc trừ sâu",
+      "start": "2022-06-08",
+      "end": "2022-06-14",
       "status": {
         "text": "exception",
         "percent": 50
@@ -30,8 +30,8 @@
       "start": "2022-05-06",
       "end": "2022-05-09",
       "status": {
-        "text": "processing",
-        "percent": 64
+        "text": "success",
+        "percent": 100
       },
       "group": "3",
       "id": 3
@@ -39,14 +39,122 @@
     {
       "name": "Dọn cây cỏ",
       "description": "Dọn sạch các cây cỏ hoang",
-      "start": "2022-05-06",
-      "end": "2022-05-09",
+      "start": "2022-06-25",
+      "end": "2022-06-27",
+      "status": {
+        "text": "processing",
+        "percent": 80
+      },
+      "group": "4",
+      "id": 4
+    },
+    {
+      "name": "Trồng cây",
+      "description": "Trồng cây ở vườn táo",
+      "start": "2022-06-26",
+      "end": "2022-06-27",
+      "status": {
+        "text": "processing",
+        "percent": 50
+      },
+      "group": "1",
+      "id": 5
+    },
+    {
+      "name": "Bón phân lót",
+      "description": "Bón phân lót cho vườn táo",
+      "start": "2022-06-25",
+      "end": "2022-06-25",
+      "status": {
+        "text": "success",
+        "percent": 100
+      },
+      "group": "2",
+      "id": 6
+    },
+    {
+      "name": "Thu hoạch dâu",
+      "description": "Thu hoạch tại vườn dâu tây",
+      "start": "2022-06-21",
+      "end": "2022-06-22",
       "status": {
         "text": "success",
         "percent": 100
       },
       "group": "4",
-      "id": 4
+      "id": 7
+    },
+    {
+      "name": "Tỉa cành",
+      "description": "Tỉa bớt cành, lá cho vườn ổi",
+      "start": "2022-06-27",
+      "end": "2022-06-28",
+      "status": {
+        "text": "processing",
+        "percent": 0
+      },
+      "group": "3",
+      "id": 8
+    },
+    {
+      "name": "Bón phân",
+      "description": "Bón phân tăng trưởng cho vườn cam",
+      "start": "2022-06-28",
+      "end": "2022-06-29",
+      "status": {
+        "text": "processing",
+        "percent": 0
+      },
+      "group": "3",
+      "id": 9
+    },
+    {
+      "name": "Ươm hạt",
+      "description": "Ươm hạt dưa hấu để chuẩn bị giống",
+      "start": "2022-06-20",
+      "end": "2022-06-20",
+      "status": {
+        "text": "exception",
+        "percent": 70
+      },
+      "group": "4",
+      "id": 10
+    },
+    {
+      "name": "Thu hoạch bưởi",
+      "description": "Thu hoạch tại vườn bưởi",
+      "start": "2022-06-30",
+      "end": "2022-07-02",
+      "status": {
+        "text": "processing",
+        "percent": 0
+      },
+      "group": "2",
+      "id": 11
+    },
+    {
+      "name": "Bón phân",
+      "description": "Bón phân tại vườn táo",
+      "start": "2022-06-27",
+      "end": "2022-06-28",
+      "status": {
+        "text": "processing",
+        "percent": 0
+      },
+      "group": "1",
+      "id": 12
+    },
+    {
+      "name": "Bón phân thúc",
+      "description": "Bón phân thúc cho vườn ổi",
+      "start": "2022-06-24",
+      "end": "2022-06-26",
+      "status": {
+        "text": "processing",
+        "percent": 80
+      },
+      "group": "2",
+      "id": 13
     }
   ],
   "users": [
@@ -61,6 +169,12 @@
       "role": 1,
       "group": "3",
       "id": 2
+    },
+    {
+      "name": "Lê Văn Toàn",
+      "role": 0,
+      "group": "3",
+      "id": 3
     }
   ]
 }

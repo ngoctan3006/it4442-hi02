@@ -1,5 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { message } from 'antd';
+import { makeUsername, randomString } from '../../utils';
 import * as api from './personnelAPI';
 
 const initialState = {
@@ -41,16 +42,18 @@ export const personnelSlice = createSlice({
 export const { startLoading, endLoading, fetchUsers, addUser, editUser, removeUser } =
   personnelSlice.actions;
 
-export const getUsers = (pagination) => async (dispatch) => {
-  try {
-    dispatch(startLoading());
-    const { data } = await api.fetchUsers(pagination);
-    dispatch(fetchUsers(data));
-    dispatch(endLoading());
-  } catch (error) {
-    console.log(error);
-  }
-};
+export const getUsers =
+  (pagination = {}) =>
+  async (dispatch) => {
+    try {
+      dispatch(startLoading());
+      const { data } = await api.fetchUsers(pagination);
+      dispatch(fetchUsers(data));
+      dispatch(endLoading());
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 export const createUser = (user) => async (dispatch) => {
   try {
@@ -58,7 +61,12 @@ export const createUser = (user) => async (dispatch) => {
       content: 'Đang tạo tài khoản...',
       key: 'updatable',
     });
-    const { data } = await api.createUser(user);
+    const { data } = await api.createUser({
+      ...user,
+      id: randomString(10),
+      username: makeUsername(user.name),
+      password: randomString(),
+    });
     dispatch(addUser(data));
     message.success({
       content: 'Đã thêm tài khoản thành công!',
