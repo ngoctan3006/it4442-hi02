@@ -11,6 +11,7 @@ import {
   Space,
   Table,
   Tag,
+  Typography,
 } from 'antd';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
@@ -142,7 +143,9 @@ const Assign = () => {
 
   return (
     <div>
-      <h2 className="page-header">Danh sách công việc</h2>
+      <Typography.Title style={{ marginBottom: 36 }} level={3}>
+        Danh Sách Công Việc
+      </Typography.Title>
       <Button
         icon={<PlusOutlined />}
         type="primary"

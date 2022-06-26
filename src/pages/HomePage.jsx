@@ -152,7 +152,7 @@ const HomePage = () => {
   return (
     <div>
       <Typography.Title style={{ marginBottom: 36 }} level={3}>
-        Trang chủ
+        Trang Chủ
       </Typography.Title>
       <Row gutter={30}>
         <Col span={12}>

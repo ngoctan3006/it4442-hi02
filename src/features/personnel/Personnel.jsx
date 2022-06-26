@@ -54,7 +54,7 @@ const Personnel = () => {
 
   return (
     <div>
-      <Typography.Title level={3}>Nhân sự</Typography.Title>
+      <Typography.Title level={3}>Nhân Sự</Typography.Title>
 
       <Button
         icon={<PlusOutlined />}
