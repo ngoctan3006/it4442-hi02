@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import loginImage from '../../assets/images/login_register.png';
 import './login.css';
 
 function LoginPage() {
@@ -10,7 +11,7 @@ function LoginPage() {
             <div className="row flex-col-login-signup">
               <div className="col-md-6">
                 <div className="login_img">
-                  <img src="/images/login_register.png" alt="login_register.png" />
+                  <img src={loginImage} alt="login_register.png" />
                   <div className="clear-fix"></div>
                 </div>
               </div>
