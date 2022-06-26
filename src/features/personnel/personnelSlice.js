@@ -1,5 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { message } from 'antd';
+import { makeUsername, randomString } from '../../utils';
 import * as api from './personnelAPI';
 
 const initialState = {
@@ -60,7 +61,12 @@ export const createUser = (user) => async (dispatch) => {
       content: 'Đang tạo tài khoản...',
       key: 'updatable',
     });
-    const { data } = await api.createUser(user);
+    const { data } = await api.createUser({
+      ...user,
+      id: randomString(10),
+      username: makeUsername(user.name),
+      password: randomString(),
+    });
     dispatch(addUser(data));
     message.success({
       content: 'Đã thêm tài khoản thành công!',

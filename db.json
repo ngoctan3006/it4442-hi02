@@ -61,6 +61,12 @@
       "role": 1,
       "group": "3",
       "id": 2
+    },
+    {
+      "name": "Lê Văn Toàn",
+      "role": 0,
+      "group": "3",
+      "id": 3
     }
   ]
 }

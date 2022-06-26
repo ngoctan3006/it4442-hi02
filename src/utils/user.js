@@ -11,4 +11,4 @@ export const makeUsername = (user) => {
   return username;
 };
 
-export const generatePassword = () => Math.random().toString(36).slice(-8);
+export const randomString = (len = 8) => Math.random().toString(36).slice(-len);
