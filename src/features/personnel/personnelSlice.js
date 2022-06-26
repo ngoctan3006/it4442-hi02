@@ -41,16 +41,18 @@ export const personnelSlice = createSlice({
 export const { startLoading, endLoading, fetchUsers, addUser, editUser, removeUser } =
   personnelSlice.actions;
 
-export const getUsers = (pagination) => async (dispatch) => {
-  try {
-    dispatch(startLoading());
-    const { data } = await api.fetchUsers(pagination);
-    dispatch(fetchUsers(data));
-    dispatch(endLoading());
-  } catch (error) {
-    console.log(error);
-  }
-};
+export const getUsers =
+  (pagination = {}) =>
+  async (dispatch) => {
+    try {
+      dispatch(startLoading());
+      const { data } = await api.fetchUsers(pagination);
+      dispatch(fetchUsers(data));
+      dispatch(endLoading());
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 export const createUser = (user) => async (dispatch) => {
   try {

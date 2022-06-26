@@ -1,13 +1,18 @@
 import { Col, Progress, Row, Table, Typography } from 'antd';
 import moment from 'moment';
+import { useEffect } from 'react';
 import Chart from 'react-apexcharts';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Badge from '../components/Badge';
 import StatusCard from '../components/StatusCard';
 import { roles } from '../constants';
-import { selectLoading as selectAssignLoading, selectWorks } from '../features/assign/assignSlice';
 import {
+  getWorks,
+  selectLoading as selectAssignLoading,
+  selectWorks,
+} from '../features/assign/assignSlice';
+import {
+  getUsers,
   selectLoading as selectPersonnelLoading,
   selectPersonnel,
 } from '../features/personnel/personnelSlice';
@@ -81,109 +86,6 @@ const chartOptions = {
   },
 };
 
-const topFarmers = {
-  head: ['họ tên', 'hoàn thành', 'chưa hoàn thành'],
-  body: [
-    {
-      name: 'nguyễn thị hồng ngọc',
-      finished: 40,
-      unfinished: 10,
-    },
-    {
-      name: 'nguyễn thùy trang',
-      finished: 35,
-      unfinished: 5,
-    },
-    {
-      name: 'nguyễn văn dũng',
-      finished: 32,
-      unfinished: 8,
-    },
-    {
-      name: 'nguyễn mạnh cường',
-      finished: 25,
-      unfinished: 15,
-    },
-    {
-      name: 'trần văn hải',
-      finished: 20,
-      unfinished: 20,
-    },
-  ],
-};
-
-const latestWorks = {
-  header: ['id', 'tên công việc', 'thời gian', 'nhóm', 'trạng thái'],
-  body: [
-    {
-      id: '#CV5',
-      name: 'công việc 5',
-      date: '21 May 2022',
-      group: 'nhóm 3',
-      status: 'unassigned',
-    },
-    {
-      id: '#CV4',
-      name: 'công việc 4',
-      date: '20 May 2022',
-      group: 'nhóm 1',
-      status: 'unfinished',
-    },
-    {
-      id: '#CV3',
-      name: 'công việc 3',
-      date: '19 May 2022',
-      group: 'nhóm 1',
-      status: 'cancel',
-    },
-    {
-      id: '#CV2',
-      name: 'công việc 2',
-      date: '18 May 2022',
-      group: 'nhóm 5',
-      status: 'unfinished',
-    },
-    {
-      id: '#CV1',
-      name: 'công việc 1',
-      date: '17 May 2022',
-      group: 'nhóm 7',
-      status: 'finished',
-    },
-  ],
-};
-
-const orderStatus = {
-  finished: 'success',
-  unassigned: 'primary',
-  unfinished: 'warning',
-  cancel: 'danger',
-};
-
-const renderCusomerHead = (item, index) => <th key={index}>{item}</th>;
-
-const renderCusomerBody = (item, index) => (
-  <tr key={index}>
-    <td>{item.name}</td>
-    <td style={{ textAlign: 'center' }}>{item.finished}</td>
-    <td style={{ textAlign: 'center' }}>{item.unfinished}</td>
-  </tr>
-);
-
-const renderOrderHead = (item, index) => <th key={index}>{item}</th>;
-
-const renderOrderBody = (item, index) => (
-  <tr key={index}>
-    <td>{item.id}</td>
-    <td>{item.name}</td>
-    <td>{item.date}</td>
-    <td>{item.group}</td>
-    <td>
-      <Badge type={orderStatus[item.status]} content={item.status} />
-    </td>
-  </tr>
-);
-
 const assignColumns = [
   {
     title: 'STT',
@@ -240,6 +142,12 @@ const HomePage = () => {
   const assignLoading = useSelector(selectAssignLoading);
   const users = useSelector(selectPersonnel);
   const personnelLoading = useSelector(selectPersonnelLoading);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers());
+    dispatch(getWorks());
+  }, []);
 
   return (
     <div>
