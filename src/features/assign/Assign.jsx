@@ -1,5 +1,17 @@
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, DatePicker, Form, Input, Modal, Select, Space, Table, Tag } from 'antd';
+import {
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  Modal,
+  Progress,
+  Select,
+  Slider,
+  Space,
+  Table,
+  Tag,
+} from 'antd';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,10 +24,10 @@ import {
   updateWork,
 } from './assignSlice';
 
-const statusColor = {
+const status = {
   success: 'Hoàn thành',
   processing: 'Đang làm',
-  error: 'Muộn',
+  exception: 'Muộn',
 };
 
 const initState = {
@@ -23,7 +35,7 @@ const initState = {
   description: '',
   start: '',
   end: '',
-  status: 'processing',
+  status: { text: 'processing', percent: 0 },
   group: '',
 };
 
@@ -57,7 +69,7 @@ const Assign = () => {
     {
       title: 'Trạng thái',
       dataIndex: 'status',
-      render: (text) => <Tag color={text}>{statusColor[text]}</Tag>,
+      render: (text) => <Progress status={text.text} percent={text.percent} />,
     },
     {
       title: 'Thao tác',
@@ -87,6 +99,7 @@ const Assign = () => {
 
   useEffect(() => {
     if (currentWork) setFormData(works.find((item) => item.id === currentWork));
+    else setFormData(initState);
   }, [currentWork]);
 
   const showModal = () => {
@@ -99,6 +112,7 @@ const Assign = () => {
     } else {
       dispatch(createWork(formData));
     }
+    setCurrentWork(undefined);
     setFormData(initState);
     setIsModalVisible(false);
   };
@@ -114,10 +128,6 @@ const Assign = () => {
       ...formData,
       [event.target.name]: event.target.value,
     });
-  };
-
-  const disabledDate = (current) => {
-    return current && current < moment().endOf('day');
   };
 
   return (
@@ -174,27 +184,47 @@ const Assign = () => {
             </Select>
           </Form.Item>
           {currentWork ? (
-            <Form.Item label="Trạng thái">
-              <Select
-                value={formData.status}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    status: e,
-                  })
-                }
-              >
-                <Select.Option value={'success'}>
-                  <Tag color={'success'}>{statusColor['success']}</Tag>
-                </Select.Option>
-                <Select.Option value={'processing'}>
-                  <Tag color={'processing'}>{statusColor['processing']}</Tag>
-                </Select.Option>
-                <Select.Option value={'error'}>
-                  <Tag color={'error'}>{statusColor['error']}</Tag>
-                </Select.Option>
-              </Select>
-            </Form.Item>
+            <>
+              <Form.Item label="Trạng thái">
+                <Select
+                  value={formData.status.text}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      status: {
+                        ...formData.status,
+                        text: e,
+                      },
+                    })
+                  }
+                >
+                  <Select.Option value={'success'}>
+                    <Tag color={'success'}>{status['success']}</Tag>
+                  </Select.Option>
+                  <Select.Option value={'processing'}>
+                    <Tag color={'processing'}>{status['processing']}</Tag>
+                  </Select.Option>
+                  <Select.Option value={'exception'}>
+                    <Tag color={'error'}>{status['exception']}</Tag>
+                  </Select.Option>
+                </Select>
+              </Form.Item>
+              <Form.Item label="Tiến độ công việc">
+                <Slider
+                  value={formData.status.percent}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      status: {
+                        ...formData.status,
+                        percent: e,
+                      },
+                    })
+                  }
+                  tipFormatter={(value) => `${value}%`}
+                />
+              </Form.Item>
+            </>
           ) : (
             ''
           )}
@@ -202,7 +232,6 @@ const Assign = () => {
             <DatePicker.RangePicker
               popupStyle={{ width: 'auto' }}
               format="DD/MM/YYYY"
-              disabledDate={disabledDate}
               value={
                 formData.start && formData.end
                   ? [moment(formData.start), moment(formData.end)]
