@@ -1,0 +1,66 @@
+{
+  "works": [
+    {
+      "name": "Trồng cây",
+      "description": "Trồng các loại cây cam, bưởi, xoài",
+      "start": "2022-06-26",
+      "end": "2022-06-30",
+      "status": {
+        "text": "processing",
+        "percent": 38
+      },
+      "group": "1",
+      "id": 1
+    },
+    {
+      "name": "Diệt sâu, bệnh",
+      "description": "phun thuốc trừ sâu diệt sâu, sử dụng thuốc trừ sâu ABC , nồng độ ...",
+      "start": "2022-06-27",
+      "end": "2022-07-05",
+      "status": {
+        "text": "exception",
+        "percent": 50
+      },
+      "group": "2",
+      "id": 2
+    },
+    {
+      "name": "Bón phân",
+      "description": "Sử dụng phân bón NPK...",
+      "start": "2022-05-06",
+      "end": "2022-05-09",
+      "status": {
+        "text": "processing",
+        "percent": 64
+      },
+      "group": "3",
+      "id": 3
+    },
+    {
+      "name": "Dọn cây cỏ",
+      "description": "Dọn sạch các cây cỏ hoang",
+      "start": "2022-05-06",
+      "end": "2022-05-09",
+      "status": {
+        "text": "success",
+        "percent": 100
+      },
+      "group": "4",
+      "id": 4
+    }
+  ],
+  "users": [
+    {
+      "name": "Nguyễn Thị Hồng Ngọc",
+      "role": 1,
+      "group": "4",
+      "id": 1
+    },
+    {
+      "name": "Lê Văn Dũng",
+      "role": 1,
+      "group": "3",
+      "id": 2
+    }
+  ]
+}

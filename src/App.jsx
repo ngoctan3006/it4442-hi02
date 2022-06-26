@@ -1,14 +1,13 @@
-import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import RequireAuth from './components/RequireAuth';
+import Assign from './features/assign/Assign';
 import LoginPage from './features/auth/LoginPage';
+import Personnel from './features/personnel/Personnel';
 import Analyse from './pages/Analyse';
-import Assign from './pages/Assign';
 import HomePage from './pages/HomePage';
 import KpiManagement from './pages/KpiManagement';
 import NotFound from './pages/NotFound';
-import Personnel from './pages/Personnel';
 import Report from './pages/Report';
 
 function App() {
