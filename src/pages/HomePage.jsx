@@ -1,9 +1,16 @@
-import React from 'react';
+import { Col, Progress, Row, Table, Typography } from 'antd';
+import moment from 'moment';
 import Chart from 'react-apexcharts';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Badge from '../components/Badge';
 import StatusCard from '../components/StatusCard';
-import Table from '../components/Table';
+import { roles } from '../constants';
+import { selectLoading as selectAssignLoading, selectWorks } from '../features/assign/assignSlice';
+import {
+  selectLoading as selectPersonnelLoading,
+  selectPersonnel,
+} from '../features/personnel/personnelSlice';
 
 const statusCards = [
   {
@@ -177,21 +184,79 @@ const renderOrderBody = (item, index) => (
   </tr>
 );
 
+const assignColumns = [
+  {
+    title: 'STT',
+    dataIndex: 'index',
+  },
+  {
+    title: 'Công việc',
+    dataIndex: 'name',
+  },
+  {
+    title: 'Nội dung công việc',
+    dataIndex: 'description',
+  },
+  {
+    title: 'Ngày bắt đầu',
+    dataIndex: 'start',
+  },
+  {
+    title: 'Ngày kết thúc',
+    dataIndex: 'end',
+  },
+  {
+    title: 'Nhóm',
+    dataIndex: 'group',
+  },
+  {
+    title: 'Trạng thái',
+    dataIndex: 'status',
+    render: (text) => <Progress status={text.text} percent={text.percent} />,
+  },
+];
+
+const personnelColumns = [
+  {
+    title: 'STT',
+    dataIndex: 'index',
+  },
+  {
+    title: 'Họ và tên',
+    dataIndex: 'name',
+  },
+  {
+    title: 'Nhóm',
+    dataIndex: 'group',
+  },
+  {
+    title: 'Chức vụ',
+    dataIndex: 'role',
+  },
+];
+
 const HomePage = () => {
+  const works = useSelector(selectWorks);
+  const assignLoading = useSelector(selectAssignLoading);
+  const users = useSelector(selectPersonnel);
+  const personnelLoading = useSelector(selectPersonnelLoading);
+
   return (
     <div>
-      <h2 className="page-header">Trang chủ</h2>
-      <div className="row">
-        <div className="col-6">
-          <div className="row">
+      <Typography.Title style={{ marginBottom: 36 }} level={3}>
+        Trang chủ
+      </Typography.Title>
+      <Row gutter={30}>
+        <Col span={12}>
+          <Row gutter={30}>
             {statusCards.map((item, index) => (
-              <div className="col-6" key={index}>
+              <Col span={12} key={index}>
                 <StatusCard icon={item.icon} count={item.count} title={item.title} />
-              </div>
+              </Col>
             ))}
-          </div>
-        </div>
-        <div className="col-6">
+          </Row>
+        </Col>
+        <Col span={12}>
           <div className="card full-height">
             <Chart
               options={chartOptions.options}
@@ -200,44 +265,69 @@ const HomePage = () => {
               height="100%"
             />
           </div>
-        </div>
-        <div className="col-4">
+        </Col>
+        <Col span={8}>
           <div className="card">
             <div className="card__header">
               <h3>top nông dân</h3>
             </div>
             <div className="card__body">
               <Table
-                headData={topFarmers.head}
-                renderHead={(item, index) => renderCusomerHead(item, index)}
-                bodyData={topFarmers.body}
-                renderBody={(item, index) => renderCusomerBody(item, index)}
+                loading={personnelLoading}
+                size="small"
+                pagination={false}
+                columns={personnelColumns}
+                dataSource={
+                  users.length
+                    ? users
+                        .map((item, index) => ({
+                          ...item,
+                          key: item.id,
+                          index: index + 1,
+                          role: roles[item.role],
+                        }))
+                        .slice(0, 5)
+                    : []
+                }
               />
             </div>
             <div className="card__footer">
-              <Link to="/">view all</Link>
+              <Link to="/personnel">view all</Link>
             </div>
           </div>
-        </div>
-        <div className="col-8">
+        </Col>
+        <Col span={16}>
           <div className="card">
             <div className="card__header">
               <h3>công việc gần đây</h3>
             </div>
             <div className="card__body">
               <Table
-                headData={latestWorks.header}
-                renderHead={(item, index) => renderOrderHead(item, index)}
-                bodyData={latestWorks.body}
-                renderBody={(item, index) => renderOrderBody(item, index)}
+                loading={assignLoading}
+                size="small"
+                pagination={false}
+                columns={assignColumns}
+                dataSource={
+                  works.length
+                    ? works
+                        .map((item, index) => ({
+                          ...item,
+                          index: index + 1,
+                          key: item.id,
+                          start: `${moment(item.start).format('DD/MM/YYYY')}`,
+                          end: `${moment(item.end).format('DD/MM/YYYY')}`,
+                        }))
+                        .slice(0, 5)
+                    : []
+                }
               />
             </div>
             <div className="card__footer">
-              <Link to="/">view all</Link>
+              <Link to="/assign">view all</Link>
             </div>
           </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
     </div>
   );
 };
