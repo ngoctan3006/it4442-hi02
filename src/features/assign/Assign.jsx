@@ -20,6 +20,7 @@ import {
   deleteWork,
   getWorks,
   selectLoading,
+  selectPagination,
   selectWorks,
   updateWork,
 } from './assignSlice';
@@ -45,9 +46,14 @@ const Assign = () => {
   const [formData, setFormData] = useState(initState);
   const works = useSelector(selectWorks);
   const loading = useSelector(selectLoading);
+  const pagination = useSelector(selectPagination);
   const dispatch = useDispatch();
 
   const columns = [
+    {
+      title: 'STT',
+      dataIndex: 'index',
+    },
     {
       title: 'Công việc',
       dataIndex: 'name',
@@ -57,9 +63,14 @@ const Assign = () => {
       dataIndex: 'description',
     },
     {
-      title: 'Thời gian',
-      dataIndex: 'time',
-      sorter: (a, b) => a.time - b.time,
+      title: 'Ngày bắt đầu',
+      dataIndex: 'start',
+      sorter: (a, b) => a - b,
+    },
+    {
+      title: 'Ngày kết thúc',
+      dataIndex: 'end',
+      sorter: (a, b) => a - b,
     },
     {
       title: 'Nhóm',
@@ -77,6 +88,7 @@ const Assign = () => {
       render: (text, record) => (
         <Space size="middle">
           <Button
+            size="small"
             onClick={() => {
               setCurrentWork(record.id);
               showModal();
@@ -85,7 +97,7 @@ const Assign = () => {
           >
             Chỉnh sửa
           </Button>
-          <Button onClick={() => dispatch(deleteWork(record.id))} danger>
+          <Button size="small" onClick={() => dispatch(deleteWork(record.id))} danger>
             Xóa
           </Button>
         </Space>
@@ -259,16 +271,16 @@ const Assign = () => {
         loading={loading}
         size="large"
         bordered
-        pagination
+        pagination={pagination}
         columns={columns}
         dataSource={
           works.length
-            ? works.map((item) => ({
+            ? works.map((item, index) => ({
                 ...item,
+                index: index + 10 * (pagination.current - 1) + 1,
                 key: item.id,
-                time: `${moment(item.start).format('DD/MM/YYYY')} - ${moment(item.end).format(
-                  'DD/MM/YYYY'
-                )}`,
+                start: `${moment(item.start).format('DD/MM/YYYY')}`,
+                end: `${moment(item.end).format('DD/MM/YYYY')}`,
               }))
             : []
         }

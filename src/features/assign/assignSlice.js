@@ -4,8 +4,10 @@ import * as api from './assignAPI';
 
 const initialState = {
   loading: false,
-  page: 1,
-  total: 1,
+  pagination: {
+    current: 1,
+    total: 1,
+  },
   works: [],
 };
 
@@ -106,7 +108,6 @@ export const deleteWork = (id) => async (dispatch) => {
 
 export const selectWorks = (state) => state.assign.works;
 export const selectLoading = (state) => state.assign.loading;
-export const selectPage = (state) => state.assign.page;
-export const selectTotal = (state) => state.assign.total;
+export const selectPagination = (state) => state.assign.pagination;
 
 export default assignSlice.reducer;
