@@ -112,12 +112,10 @@ const Assign = () => {
     } else {
       dispatch(createWork(formData));
     }
-    setCurrentWork(undefined);
-    setFormData(initState);
-    setIsModalVisible(false);
+    handleReset();
   };
 
-  const handleCancel = () => {
+  const handleReset = () => {
     setCurrentWork(undefined);
     setFormData(initState);
     setIsModalVisible(false);
@@ -145,7 +143,7 @@ const Assign = () => {
         title={`${currentWork ? 'Chỉnh sửa ' : 'Thêm '} công việc`}
         visible={isModalVisible}
         onOk={handleOk}
-        onCancel={handleCancel}
+        onCancel={handleReset}
       >
         <Form
           labelCol={{
