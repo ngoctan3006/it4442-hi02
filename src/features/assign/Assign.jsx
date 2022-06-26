@@ -141,6 +141,14 @@ const Assign = () => {
     });
   };
 
+  const handleTableChange = (newPagination) => {
+    dispatch(
+      getWorks({
+        pagination: newPagination,
+      })
+    );
+  };
+
   return (
     <div>
       <Typography.Title style={{ marginBottom: 36 }} level={3}>
@@ -274,6 +282,7 @@ const Assign = () => {
         loading={loading}
         size="large"
         bordered
+        onChange={handleTableChange}
         pagination={pagination}
         columns={columns}
         dataSource={
