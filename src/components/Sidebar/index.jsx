@@ -16,7 +16,7 @@ const sidebarItems = [
   {
     name: 'Nhân sự',
     path: '/personnel',
-    icon: 'bx bx-spreadsheet',
+    icon: 'bx bxs-user-detail',
   },
   {
     name: 'Báo cáo',
