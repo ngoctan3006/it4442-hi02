@@ -15,12 +15,12 @@ const chartDonutOptions = {
 const chartBarOptions = {
   series: [
     {
-      name: 'Đã hoàn thành',
-      data: [10, 8, 11, 15],
-    },
-    {
       name: 'Chưa hoàn thành',
       data: [18, 15, 12, 14],
+    },
+    {
+      name: 'Đã hoàn thành',
+      data: [10, 8, 11, 15],
     },
   ],
   options: {
@@ -40,7 +40,7 @@ const chartBarOptions = {
     },
     xaxis: {
       type: 'text',
-      categories: ['Team 1', 'Team 2', 'Team 3', 'Team 4'],
+      categories: ['Nhóm 1', 'Nhóm 2', 'Nhóm 3', 'Nhóm 4'],
     },
     legend: {
       position: 'right',

@@ -1,5 +1,5 @@
-import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import logo from '../../assets/images/logo.png';
 import './sidebar.css';
 
 const sidebarItems = [
@@ -55,7 +55,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="sidebar__logo">
         <Link to="/">
-          <h2>HappyFarm</h2>
+          <img style={{ width: '250px' }} src={logo} alt="Logo" />
         </Link>
       </div>
       {sidebarItems.map((item, index) => (

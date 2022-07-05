@@ -43,12 +43,12 @@ const statusCards = [
 const chartOptions = {
   series: [
     {
-      name: 'Công việc đã hoàn thành',
-      data: [40, 70, 20, 90, 36, 80, 30, 91, 60, 20, 30, 50],
+      name: 'Công việc chưa hoàn thành',
+      data: [30, 30, 70, 50, 40, 16, 40, 20, 51, 10, 50, 20],
     },
     {
-      name: 'Công việc chưa hoàn thành',
-      data: [40, 30, 70, 50, 40, 16, 40, 20, 51, 10, 50, 20],
+      name: 'Công việc đã hoàn thành',
+      data: [40, 70, 20, 90, 36, 80, 30, 91, 60, 20, 30, 50],
     },
   ],
   options: {
