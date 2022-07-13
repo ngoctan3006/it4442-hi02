@@ -5,8 +5,10 @@ import User from '../models/user';
 
 dotenv.config();
 
+const salt = bcrypt.genSaltSync(12);
+
 export const signup = async (req, res) => {
-  const { username, password, comfirmPassword, fullname, group, role } = req.body;
+  const { username, password, confirmPassword, fullname, group, role } = req.body;
 
   try {
     const existingUser = await User.findOne({ username });
@@ -14,10 +16,10 @@ export const signup = async (req, res) => {
       return res.status(400).json({ message: 'Tài khoản đã tồn tại.' });
     }
 
-    if (password !== comfirmPassword) {
+    if (password !== confirmPassword) {
       return res.status(400).json({ message: 'Mật khẩu không khớp.' });
     }
-    const hasedPassword = await bcrypt.hash(password, 12);
+    const hasedPassword = await bcrypt.hash(password, salt);
 
     const user = new User({
       username,
@@ -33,14 +35,11 @@ export const signup = async (req, res) => {
         id: user._id,
         role,
       },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: '1h',
-      }
+      process.env.JWT_SECRET
     );
-    delete user.password;
 
-    res.status(201).json({ user, token });
+    const { password: pw, ...userWithoutPassword } = user.toObject();
+    res.status(201).json({ user: userWithoutPassword, token });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error.message });
@@ -53,12 +52,12 @@ export const signin = async (req, res) => {
   try {
     const user = await User.findOne({ username });
     if (!user) {
-      return res.status(400).json({ message: 'Tài khoản không tồn tại.' });
+      return res.status(400).json({ message: 'Sai tên đăng nhập hoặc mật khẩu.' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Mật khẩu không đúng.' });
+      return res.status(400).json({ message: 'Sai tên đăng nhập hoặc mật khẩu.' });
     }
 
     const token = jwt.sign(
@@ -66,15 +65,56 @@ export const signin = async (req, res) => {
         id: user._id,
         role: user.role,
       },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: '1h',
-      }
+      process.env.JWT_SECRET
     );
 
-    delete user.password;
+    const { password: pw, ...userWithoutPassword } = user.toObject();
+    res.status(200).json({ user: userWithoutPassword, token });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+};
 
-    res.status(200).json({ user, token });
+export const getMe = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: 'Không tìm thấy người dùng.' });
+    }
+
+    const { password, ...userWithoutPassword } = user.toObject();
+    res.json({ user: userWithoutPassword });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const changePassword = async (req, res) => {
+  const { oldPassword, newPassword, confirmPassword } = req.body;
+
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: 'Không tìm thấy người dùng.' });
+    }
+
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Sai mật khẩu cũ.' });
+    }
+
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({ message: 'Mật khẩu không khớp.' });
+    }
+
+    const hasedPassword = await bcrypt.hash(newPassword, salt);
+
+    user.password = hasedPassword;
+    await user.save();
+
+    res.status(200).json({ message: 'Đổi mật khẩu thành công.' });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error.message });
