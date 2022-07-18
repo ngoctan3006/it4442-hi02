@@ -5,6 +5,7 @@ import {
   Form,
   Input,
   Modal,
+  Popconfirm,
   Progress,
   Select,
   Slider,
@@ -98,9 +99,16 @@ const Assign = () => {
           >
             Chỉnh sửa
           </Button>
-          <Button size="small" onClick={() => dispatch(deleteWork(record.id))} danger>
-            Xóa
-          </Button>
+          <Popconfirm
+            title="Bạn có chắc chắn muốn xóa công việc này?"
+            okText="Xóa"
+            cancelText="Không"
+            onConfirm={() => dispatch(deleteWork(record.id))}
+          >
+            <Button size="small" danger>
+              Xóa
+            </Button>
+          </Popconfirm>
         </Space>
       ),
     },
@@ -209,15 +217,25 @@ const Assign = () => {
               <Form.Item label="Trạng thái">
                 <Select
                   value={formData.status.text}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      status: {
-                        ...formData.status,
-                        text: e,
-                      },
-                    })
-                  }
+                  onChange={(e) => {
+                    if (e === 'success') {
+                      setFormData({
+                        ...formData,
+                        status: {
+                          text: e,
+                          percent: 100,
+                        },
+                      });
+                    } else {
+                      setFormData({
+                        ...formData,
+                        status: {
+                          ...formData.status,
+                          text: e,
+                        },
+                      });
+                    }
+                  }}
                 >
                   <Select.Option value={'success'}>
                     <Tag color={'success'}>{status['success']}</Tag>
@@ -233,15 +251,26 @@ const Assign = () => {
               <Form.Item label="Tiến độ công việc">
                 <Slider
                   value={formData.status.percent}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      status: {
-                        ...formData.status,
-                        percent: e,
-                      },
-                    })
-                  }
+                  step={10}
+                  onChange={(e) => {
+                    if (e === 100) {
+                      setFormData({
+                        ...formData,
+                        status: {
+                          text: 'success',
+                          percent: e,
+                        },
+                      });
+                    } else {
+                      setFormData({
+                        ...formData,
+                        status: {
+                          ...formData.status,
+                          percent: e,
+                        },
+                      });
+                    }
+                  }}
                   tipFormatter={(value) => `${value}%`}
                 />
               </Form.Item>
