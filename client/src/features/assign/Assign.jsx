@@ -128,6 +128,17 @@ const Assign = () => {
   };
 
   const handleOk = () => {
+    if (
+      !formData.name ||
+      !formData.description ||
+      !formData.start ||
+      !formData.end ||
+      !formData.group
+    ) {
+      alert('Vui lòng nhập đầy đủ thông tin');
+      return;
+    }
+
     if (currentWork) {
       dispatch(updateWork(currentWork, formData));
     } else {

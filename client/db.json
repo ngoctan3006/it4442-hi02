@@ -3,11 +3,11 @@
     {
       "name": "Diệt sâu, bệnh",
       "description": "Phun thuốc trừ sâu diệt sâu, sử dụng thuốc trừ sâu",
-      "start": "2022-06-08",
-      "end": "2022-06-14",
+      "start": "2022-07-19",
+      "end": "2022-07-21",
       "status": {
-        "text": "exception",
-        "percent": 50
+        "text": "processing",
+        "percent": 60
       },
       "group": "2",
       "id": 2
