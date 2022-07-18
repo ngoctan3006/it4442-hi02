@@ -25,6 +25,12 @@
   border-radius: var(--border-radius);
   color: var(--txt-color);
   background-color: var(--main-bg);
+  border: 2px solid transparent;
+  outline: 0;
+}
+
+.topnav__search > input:focus {
+  border: 2px solid var(--main-color);
 }
 
 .topnav__search > i {
