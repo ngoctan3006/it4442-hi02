@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import loginImage from '../../assets/images/login_register.png';
 import './login.css';
 
 function LoginPage() {
+  const [username, setUsername] = useState('');
+
   return (
     <main className="nothomepage">
       <div className="oe_website_login_container">
@@ -22,15 +25,17 @@ function LoginPage() {
                   <form>
                     <div className="form-group field-login">
                       <label htmlFor="login" className="control-label">
-                        Email
+                        Username
                       </label>
                       <input
                         type="text"
-                        name="login"
+                        name="username"
                         id="login"
                         className="form-control"
-                        required="required"
-                        placeholder="Email"
+                        required
+                        placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                       />
                     </div>
                     <div className="form-group field-password">
@@ -43,7 +48,7 @@ function LoginPage() {
                         name="password"
                         id="password"
                         className="form-control"
-                        required="required"
+                        required
                         maxLength="4096"
                       />
                     </div>

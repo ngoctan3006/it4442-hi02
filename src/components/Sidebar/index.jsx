@@ -5,17 +5,17 @@ import './sidebar.css';
 const sidebarItems = [
   {
     name: 'Trang chủ',
-    path: '/',
+    path: '/admin',
     icon: 'bx bx-home-alt',
   },
   {
     name: 'Giao việc',
-    path: '/assign',
+    path: '/admin/assign',
     icon: 'bx bx-spreadsheet',
   },
   {
     name: 'Nhân sự',
-    path: '/personnel',
+    path: '/admin/personnel',
     icon: 'bx bxs-user-detail',
   },
   // {
@@ -30,7 +30,7 @@ const sidebarItems = [
   // },
   {
     name: 'Quản lí KPI',
-    path: '/kpi-management',
+    path: '/admin/kpi-management',
     icon: 'bx bxs-bar-chart-alt-2',
   },
 ];

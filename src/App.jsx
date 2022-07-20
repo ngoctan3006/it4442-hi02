@@ -14,7 +14,7 @@ function App() {
   return (
     <Routes>
       <Route element={<RequireAuth />}>
-        <Route path="/" element={<Layout />}>
+        <Route path="/admin" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="assign" element={<Assign />} />
           <Route path="personnel" element={<Personnel />} />

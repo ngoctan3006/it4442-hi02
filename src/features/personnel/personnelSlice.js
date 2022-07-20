@@ -48,7 +48,8 @@ export const getUsers =
     try {
       dispatch(startLoading());
       const { data } = await api.fetchUsers(pagination);
-      dispatch(fetchUsers(data));
+      const user = data.filter((item) => item.role < 2);
+      dispatch(fetchUsers(user));
       dispatch(endLoading());
     } catch (error) {
       console.log(error);

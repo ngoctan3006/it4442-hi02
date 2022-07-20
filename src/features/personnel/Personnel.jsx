@@ -1,7 +1,8 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Modal, Select, Space, Table, Typography } from 'antd';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Info from '../../components/Info';
 import { roles } from '../../constants';
 import { getUsers, selectLoading, selectPagination, selectPersonnel } from './personnelSlice';
 
@@ -31,15 +32,20 @@ const Personnel = () => {
       dataIndex: 'role',
     },
     {
+      title: 'Đã hoàn thành',
+      dataIndex: 'done',
+    },
+    {
+      title: 'Đang làm',
+      dataIndex: 'processing',
+    },
+    {
       title: 'Thao tác',
       key: 'action',
-      render: () => (
+      render: (text, record) => (
         <Space size="middle">
-          <Button icon={<EyeOutlined />} size="small">
+          <Button onClick={() => showModalInfo(record.id)} icon={<EyeOutlined />} size="small">
             Xem thông tin
-          </Button>
-          <Button icon={<EditOutlined />} size="small" type="primary">
-            Chỉnh sửa
           </Button>
           <Button icon={<DeleteOutlined />} size="small" danger>
             Xóa
@@ -55,15 +61,26 @@ const Personnel = () => {
   const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [formData, setFormData] = useState(initState);
+  const [isModalInfoVisible, setIsModalInfoVisible] = useState(false);
+  const [currentUser, setCurrentUser] = useState(undefined);
 
   const showModal = () => {
     setIsModalVisible(true);
+  };
+
+  const showModalInfo = (id) => {
+    setIsModalInfoVisible(true);
+    setCurrentUser(id);
   };
 
   const handleOk = () => {};
 
   const handleCancel = () => {
     setIsModalVisible(false);
+  };
+
+  const handleInfoCancel = () => {
+    setIsModalInfoVisible(false);
   };
 
   useEffect(() => {
@@ -138,6 +155,16 @@ const Personnel = () => {
             </Select>
           </Form.Item>
         </Form>
+      </Modal>
+
+      <Modal
+        title="Thông tin cá nhân"
+        visible={isModalInfoVisible}
+        width={'60%'}
+        footer={null}
+        onCancel={handleInfoCancel}
+      >
+        <Info user={users.find((item) => item.id === currentUser)} />
       </Modal>
 
       <Table
