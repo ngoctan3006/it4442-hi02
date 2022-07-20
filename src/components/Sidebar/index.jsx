@@ -18,16 +18,16 @@ const sidebarItems = [
     path: '/personnel',
     icon: 'bx bxs-user-detail',
   },
-  {
-    name: 'Báo cáo',
-    path: '/report',
-    icon: 'bx bxs-report',
-  },
-  {
-    name: 'Thống kê',
-    path: '/analyse',
-    icon: 'bx bx-analyse',
-  },
+  // {
+  //   name: 'Báo cáo',
+  //   path: '/report',
+  //   icon: 'bx bxs-report',
+  // },
+  // {
+  //   name: 'Thống kê',
+  //   path: '/analyse',
+  //   icon: 'bx bx-analyse',
+  // },
   {
     name: 'Quản lí KPI',
     path: '/kpi-management',
