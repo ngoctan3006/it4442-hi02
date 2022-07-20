@@ -148,21 +148,43 @@
   "users": [
     {
       "name": "Nguyễn Thị Hồng Ngọc",
+      "username": "ngoc.nth",
       "role": 1,
       "group": "4",
+      "done": 15,
+      "processing": 2,
+      "exception": 0,
       "id": 1
     },
     {
       "name": "Lê Văn Dũng",
+      "username": "dung.lv",
       "role": 1,
       "group": "3",
+      "done": 13,
+      "processing": 1,
+      "exception": 0,
       "id": 2
     },
     {
       "name": "Lê Văn Toàn",
+      "username": "toan.lv",
       "role": 0,
       "group": "3",
+      "done": 12,
+      "processing": 1,
+      "exception": 0,
       "id": 3
+    },
+    {
+      "name": "Nguyễn Ngọc Tân",
+      "username": "tan.nn",
+      "role": 2,
+      "group": "4",
+      "done": null,
+      "processing": null,
+      "exception": null,
+      "id": 4
     }
   ]
 }

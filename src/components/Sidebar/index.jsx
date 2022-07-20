@@ -2,39 +2,6 @@ import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 import './sidebar.css';
 
-const sidebarItems = [
-  {
-    name: 'Trang chủ',
-    path: '/',
-    icon: 'bx bx-home-alt',
-  },
-  {
-    name: 'Giao việc',
-    path: '/assign',
-    icon: 'bx bx-spreadsheet',
-  },
-  {
-    name: 'Nhân sự',
-    path: '/personnel',
-    icon: 'bx bxs-user-detail',
-  },
-  // {
-  //   name: 'Báo cáo',
-  //   path: '/report',
-  //   icon: 'bx bxs-report',
-  // },
-  // {
-  //   name: 'Thống kê',
-  //   path: '/analyse',
-  //   icon: 'bx bx-analyse',
-  // },
-  {
-    name: 'Quản lí KPI',
-    path: '/kpi-management',
-    icon: 'bx bxs-bar-chart-alt-2',
-  },
-];
-
 const SidebarItem = (props) => {
   const active = props.active ? 'active' : '';
   return (
@@ -47,7 +14,7 @@ const SidebarItem = (props) => {
   );
 };
 
-const Sidebar = () => {
+const Sidebar = ({ sidebarItems }) => {
   const location = useLocation();
   const active = sidebarItems.findIndex((item) => item.path === location.pathname);
 

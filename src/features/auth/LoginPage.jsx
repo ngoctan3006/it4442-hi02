@@ -1,8 +1,19 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import loginImage from '../../assets/images/login_register.png';
+import { login } from './authSlice';
 import './login.css';
 
 function LoginPage() {
+  const [username, setUsername] = useState('');
+  const dispatch = useDispatch();
+
+  const submit = (e) => {
+    e.preventDefault();
+    dispatch(login(username));
+  };
+
   return (
     <main className="nothomepage">
       <div className="oe_website_login_container">
@@ -19,18 +30,20 @@ function LoginPage() {
                 <div className="login_right">
                   <h3>Đăng Nhập</h3>
                   <p>Chào mừng bạn đến với phần mềm quản lý nông trại</p>
-                  <form>
+                  <form onSubmit={submit}>
                     <div className="form-group field-login">
                       <label htmlFor="login" className="control-label">
-                        Email
+                        Username
                       </label>
                       <input
                         type="text"
-                        name="login"
+                        name="username"
                         id="login"
                         className="form-control"
-                        required="required"
-                        placeholder="Email"
+                        required
+                        placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                       />
                     </div>
                     <div className="form-group field-password">
@@ -43,7 +56,7 @@ function LoginPage() {
                         name="password"
                         id="password"
                         className="form-control"
-                        required="required"
+                        required
                         maxLength="4096"
                       />
                     </div>
@@ -74,7 +87,11 @@ function LoginPage() {
                     </div>
                     <div className="space10"></div>
                     <div className="form-group">
-                      <button type="submit" className="btn btn-success btn-block btn-login-system">
+                      <button
+                        onClick={submit}
+                        type="submit"
+                        className="btn btn-success btn-block btn-login-system"
+                      >
                         Đăng nhập
                       </button>
                     </div>

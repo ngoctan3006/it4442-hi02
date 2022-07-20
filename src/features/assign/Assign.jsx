@@ -27,11 +27,11 @@ import {
   updateWork,
 } from './assignSlice';
 
-const status = {
-  success: 'Hoàn thành',
-  processing: 'Đang làm',
-  exception: 'Muộn',
-};
+// const status = {
+//   success: 'Hoàn thành',
+//   processing: 'Đang làm',
+//   exception: 'Muộn',
+// };
 
 const initState = {
   name: '',
@@ -223,7 +223,7 @@ const Assign = () => {
               <Select.Option value={'4'}>Nhóm 4</Select.Option>
             </Select>
           </Form.Item>
-          {currentWork ? (
+          {/* {currentWork ? (
             <>
               <Form.Item label="Trạng thái">
                 <Select
@@ -288,7 +288,7 @@ const Assign = () => {
             </>
           ) : (
             ''
-          )}
+          )} */}
           <Form.Item label="Thời gian">
             <DatePicker.RangePicker
               popupStyle={{ width: 'auto' }}
