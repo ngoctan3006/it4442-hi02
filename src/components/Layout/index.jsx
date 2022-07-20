@@ -3,10 +3,10 @@ import Sidebar from '../Sidebar';
 import TopNav from '../TopNav';
 import './layout.css';
 
-const Layout = () => {
+const Layout = ({ sidebarItems }) => {
   return (
     <div className="layout">
-      <Sidebar />
+      <Sidebar sidebarItems={sidebarItems} />
       <div className="layout__content">
         <TopNav />
         <div className="layout__content-main">

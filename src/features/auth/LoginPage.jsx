@@ -1,10 +1,18 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import loginImage from '../../assets/images/login_register.png';
+import { login } from './authSlice';
 import './login.css';
 
 function LoginPage() {
   const [username, setUsername] = useState('');
+  const dispatch = useDispatch();
+
+  const submit = (e) => {
+    e.preventDefault();
+    dispatch(login(username));
+  };
 
   return (
     <main className="nothomepage">
@@ -22,7 +30,7 @@ function LoginPage() {
                 <div className="login_right">
                   <h3>Đăng Nhập</h3>
                   <p>Chào mừng bạn đến với phần mềm quản lý nông trại</p>
-                  <form>
+                  <form onSubmit={submit}>
                     <div className="form-group field-login">
                       <label htmlFor="login" className="control-label">
                         Username
@@ -79,7 +87,11 @@ function LoginPage() {
                     </div>
                     <div className="space10"></div>
                     <div className="form-group">
-                      <button type="submit" className="btn btn-success btn-block btn-login-system">
+                      <button
+                        onClick={submit}
+                        type="submit"
+                        className="btn btn-success btn-block btn-login-system"
+                      >
                         Đăng nhập
                       </button>
                     </div>
